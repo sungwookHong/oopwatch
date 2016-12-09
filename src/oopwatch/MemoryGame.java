@@ -13,7 +13,7 @@ public class MemoryGame implements Game {
 	private TimeManager timeManager;
 	private boolean isPlaying;
 
-	private boolean[] toggleStatus;
+	private boolean[] toggleStatus = new boolean[16];
 	
 	public MemoryGame() {
 		timeManager = new TimeManager();

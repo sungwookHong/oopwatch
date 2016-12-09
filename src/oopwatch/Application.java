@@ -1,6 +1,8 @@
 package oopwatch;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -15,6 +17,8 @@ public class Application {
 
 	private JFrame frmOopwatch;
 	private JTextField txtEnterYourName;
+	
+	MontyHallGameUI montyhall = new MontyHallGameUI();
 
 	/**
 	 * Launch the application.
@@ -57,6 +61,11 @@ public class Application {
 		JButton btnMontyHall = new JButton("Monty Hall");
 		btnMontyHall.setBounds(12, 226, 315, 67);
 		MainPanel.add(btnMontyHall);
+		btnMontyHall.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				montyhall.open_montyhall();
+			}
+		});
 		
 		JButton btnMemoryGame = new JButton("Memory Game");
 		
