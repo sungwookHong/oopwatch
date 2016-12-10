@@ -19,6 +19,7 @@ public class Application {
 	private JTextField txtEnterYourName;
 	
 	MontyHallGameUI montyhall = new MontyHallGameUI();
+	RankUI rank = new RankUI();
 
 	/**
 	 * Launch the application.
@@ -75,6 +76,11 @@ public class Application {
 		JButton btnRanking = new JButton("Ranking");
 		btnRanking.setBounds(12, 380, 315, 67);
 		MainPanel.add(btnRanking);
+		btnRanking.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rank.show_ranking();
+			}
+		});
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(0, 189, 339, 2);
@@ -215,11 +221,10 @@ public class Application {
 		MemoryGamePanel.add(btnStartMemoryGame);
 		
 		txtEnterYourName = new JTextField();
-		txtEnterYourName.setText("JonSnow");
+		txtEnterYourName.setText("");
 		txtEnterYourName.setBounds(12, 340, 315, 21);
 		MemoryGamePanel.add(txtEnterYourName);
 		txtEnterYourName.setColumns(10);
-		
 
 		// these codes must be under the definitions.
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -234,7 +239,7 @@ public class Application {
 		// UI Controller
 		MemoryGameUIController memoryGameUIController = new MemoryGameUIController(memoryGameButtons, lblTimerLabel, txtEnterYourName.getText());
 		//MontyHallUIController montyHallUIController = new MontyHallUIController();
-		
+				
 		// ui transition
 		btnMemoryGame.addMouseListener(memoryGameUIController.changeUIAfterClick(MainPanel, MemoryGamePanel, true));
 		btnMemoryGameBackButton.addMouseListener(memoryGameUIController.changeUIAfterClick(MemoryGamePanel, MainPanel, true));
@@ -245,6 +250,8 @@ public class Application {
 		for(int i=0;i<memoryGameButtons.size();i++) {
 			memoryGameButtons.get(i).addMouseListener(memoryGameUIController.memoryBtnClick(i));
 		}
+		
+		memoryGameUIController.setName(txtEnterYourName.getText());
 		////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// end
 	}

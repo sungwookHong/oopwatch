@@ -12,8 +12,10 @@ public class MemoryGame implements Game {
 	private int[] answer;
 	private TimeManager timeManager;
 	private boolean isPlaying;
-
+	
 	private boolean[] toggleStatus = new boolean[16];
+	
+	private String name;
 	
 	public MemoryGame() {
 		timeManager = new TimeManager();
@@ -24,15 +26,22 @@ public class MemoryGame implements Game {
 		toggleStatus = new boolean[n];
 		timeManager.start(timerLabel);
 		isPlaying = true;
+		name = userName;
 	}
 	
 	public void stopGame(String userName, JLabel timerLabel) {
+		RankManager rank = new RankManager();
 		timeManager.stop(timerLabel);
 		isPlaying = false;
-		
+		String time = timerLabel.getText();
+		String[] split = time.split(" ");
+		int score = getScore();
 		if ( isDone() == true ) {
-			timerLabel.setText(timerLabel.getText()+" score: " + getScore());
+			timerLabel.setText(time +" score: " + score);
 		}
+		System.out.println(name);
+		System.out.println(userName);
+		rank.insertRank(name, score, split[2]);
 	}
 	
 	public int getScore() {

@@ -8,6 +8,7 @@ import java.util.TimerTask;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 
 public class MemoryGameUIController extends UIController {
@@ -29,7 +30,6 @@ public class MemoryGameUIController extends UIController {
 		this.timerLabel = timerLabel;
 		timerLabel.setText("not started");
 		this.userName = userName;
-		
 		initializeUI();
 	}
 
@@ -104,5 +104,9 @@ public class MemoryGameUIController extends UIController {
 	
 	public void setButtonNull(int i) {
 		buttons.get(i).setIcon(null);
+	}
+	
+	public void setName(String name){
+		this.userName = name;
 	}
 }
