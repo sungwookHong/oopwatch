@@ -67,14 +67,15 @@ public class MemoryGame implements Game {
 				while ( answer[now] != 0 ) {
 					now = random.nextInt(n); 
 				}
-				answer[now] = x;
+				if(times == 1) answer[now]=x+10000;
+				else answer[now] = x;
 			}
 		}
 		return answer;
 	}
 	
 	public boolean checkWithRule(int i,int j) {
-		if ( i != j && answer[i] == answer[j] ) {
+		if ( i != j && answer[i]%10 == answer[j]%10 ) {
 			return true;
 		}
 		failedCount += 1;

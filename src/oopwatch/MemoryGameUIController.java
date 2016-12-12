@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 
 public class MemoryGameUIController extends UIController {
 	ArrayList<JButton> buttons;
@@ -21,15 +22,16 @@ public class MemoryGameUIController extends UIController {
 	
 	private int last_position;
 	private boolean isToggled;
+	private JTextField juserName;
 	private String userName;
 	
-	public MemoryGameUIController(ArrayList<JButton> buttons, JLabel timerLabel, String userName) {
+	public MemoryGameUIController(ArrayList<JButton> buttons, JLabel timerLabel, JTextField userName) {
 		game = new MemoryGame();
 		
 		this.buttons = buttons;
 		this.timerLabel = timerLabel;
 		timerLabel.setText("not started");
-		this.userName = userName;
+		this.juserName = userName;
 		initializeUI();
 	}
 
@@ -52,6 +54,7 @@ public class MemoryGameUIController extends UIController {
 		for(int i=0;i<n;i++) {
 			buttons.get(i).setEnabled(true);
 		}
+		userName = juserName.getText();
 		game.startGame(userName, timerLabel);
 	}
 	

@@ -20,7 +20,9 @@ public class Application {
 	
 	MontyHallGameUI montyhall = new MontyHallGameUI();
 	RankUI rank = new RankUI();
-
+	conceptMath cm = new conceptMath();
+	conceptScience cs = new conceptScience();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -89,10 +91,22 @@ public class Application {
 		JButton btnWhatIsProbability = new JButton("What is probability?");
 		btnWhatIsProbability.setBounds(12, 35, 315, 67);
 		MainPanel.add(btnWhatIsProbability);
+		btnWhatIsProbability.addActionListener(new ActionListener() {
+				@Override
+			public void actionPerformed(ActionEvent e) {
+				cm.show_Math(null);
+			}
+		});
 		
-		JButton btnWhatIsChunking = new JButton("What is chunking?");
+		JButton btnWhatIsChunking = new JButton("What is Chemical Equipment?");
 		btnWhatIsChunking.setBounds(12, 112, 315, 67);
 		MainPanel.add(btnWhatIsChunking);
+		btnWhatIsChunking.addActionListener(new ActionListener() {
+			@Override
+		public void actionPerformed(ActionEvent e) {
+			cs.show_Science(null);
+		}
+	});
 		
 		JLabel lblLearningSection = new JLabel("Learning section");
 		lblLearningSection.setBounds(12, 10, 138, 15);
@@ -237,7 +251,7 @@ public class Application {
 		memoryGameButtons.add(btnMemoryButton13); memoryGameButtons.add(btnMemoryButton14); memoryGameButtons.add(btnMemoryButton15); memoryGameButtons.add(btnMemoryButton16);
 		
 		// UI Controller
-		MemoryGameUIController memoryGameUIController = new MemoryGameUIController(memoryGameButtons, lblTimerLabel, txtEnterYourName.getText());
+		MemoryGameUIController memoryGameUIController = new MemoryGameUIController(memoryGameButtons, lblTimerLabel, txtEnterYourName);
 		//MontyHallUIController montyHallUIController = new MontyHallUIController();
 				
 		// ui transition
