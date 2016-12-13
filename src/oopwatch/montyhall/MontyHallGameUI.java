@@ -297,6 +297,7 @@ public class MontyHallGameUI implements ActionListener {
 		});
 	}
 
+	//actionPerforemd for three button boxex.
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 

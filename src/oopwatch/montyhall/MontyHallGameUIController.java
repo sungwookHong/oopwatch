@@ -28,6 +28,7 @@ public class MontyHallGameUIController extends UIController{
 		
 	}
 	
+	//init UI for montyhall labels.
 	public void init_UIinMonty(JButton[] buttons, JLabel[] labels, JLabel label){
 		for(int i = 0; i < 3; i++){
 			buttons[i].setIcon(question);
@@ -41,15 +42,17 @@ public class MontyHallGameUIController extends UIController{
 		label.setText("\u2605 Select one of the three boxex above");
 	}
 
+	//extends UIController and override startGame method.
 	@Override
 	public void startGame() {
-		game.init();
+		game.startGame("None", new JLabel("Don't need time lable"));
 		game.shuffle();
 		firstSelectNum = -1;
 		secondSelectNum = -1;
 		openNum = -1;
 	}
 	
+	//shuffle the button 1,2,3 for make gold box,
 	public void shuffle(JButton[] buttons, JLabel label){
 		game.shuffle();
 		firstSelectNum = -1;
@@ -61,12 +64,13 @@ public class MontyHallGameUIController extends UIController{
 		label.setText("\u2605 Select one of the three boxex above");
 	}
 	
+	//call this method when first selected.
 	public int first_select(JButton[] buttons, JLabel label, int selectNum){
 		label.setText("Click '!' to keep your first choice or '?' to change it");
 		this.firstSelectNum = selectNum;
 		buttons[firstSelectNum].setIcon(select);
 		
-		if(firstSelectNum == game.gold_Num){
+		if(firstSelectNum == game.getGold_Num()){
 			Random random = new Random();
 			int unselect = random.nextInt(3);
 			while(unselect == firstSelectNum){
@@ -76,7 +80,7 @@ public class MontyHallGameUIController extends UIController{
 			openNum = unselect;
 		}else{
 			for(int i = 0; i < 3; i++){
-				if((i != firstSelectNum) && (i != game.gold_Num)){
+				if((i != firstSelectNum) && (i != game.getGold_Num())){
 					buttons[i].setIcon(sheep);
 					openNum = i;
 				}
@@ -94,6 +98,7 @@ public class MontyHallGameUIController extends UIController{
 		
 	}
 
+	//call this method when second selected.
 	public boolean second_select(JButton[] buttons, JLabel[] labels, JLabel label, int selectNum){
 		boolean check = true;
 		if(selectNum == openNum){
@@ -102,7 +107,7 @@ public class MontyHallGameUIController extends UIController{
 		}else{
 			secondSelectNum = selectNum;
 			for(int i = 0; i < 3; i++){
-				if(i == game.gold_Num){
+				if(i == game.getGold_Num()){
 					buttons[i].setIcon(gold);
 				}else{
 					buttons[i].setIcon(sheep);
@@ -110,23 +115,35 @@ public class MontyHallGameUIController extends UIController{
 			}
 			if(firstSelectNum == secondSelectNum){
 				//keep
-				game.keep_total++;
-				if(secondSelectNum == game.gold_Num){
-					game.keep_win++;
+				int keep_total = game.getKeep_total();
+				keep_total++;
+				game.setKeep_total(keep_total);
+				if(secondSelectNum == game.getGold_Num()){
+					int keep_win = game.getKeep_win();
+					keep_win++;
+					game.setKeep_win(keep_win);
 					label.setText("You kept the choice and Win!");
 				}else{
-					game.keep_lose++;
+					int keep_lose = game.getKeep_lose();
+					keep_lose++;
+					game.setKeep_lose(keep_lose);
 					label.setText("You kept the choice and Lose!");
 				}
 				type = true;
 			}else{
 				//change
-				game.change_total++;
-				if(secondSelectNum == game.gold_Num){
-					game.change_win++;
+				int change_total = game.getChange_total();
+				change_total++;
+				game.setChange_total(change_total);
+				if(secondSelectNum == game.getGold_Num()){
+					int change_win = game.getChange_win();
+					change_win++;
+					game.setChange_win(change_win);
 					label.setText("You changed the choice and Win!");
 				}else{
-					game.change_lose++;
+					int change_lose = game.getChange_lose();
+					change_lose++;
+					game.setChange_lose(change_lose);
 					label.setText("You changed the choice and Lose!");
 				}
 				type = false;
@@ -135,24 +152,17 @@ public class MontyHallGameUIController extends UIController{
 			game.Calculate(type);
 			
 			if(type == true){
-				labels[0].setText("Keep Choice : "+game.keep_total+" times");
-				labels[1].setText("Win : "+game.keep_win+" Gold ( "+game.keep_win_p+"% )");
-				labels[2].setText("Losses : "+game.keep_lose+" sheep ( "+game.keep_lose_p+"% )");
+				labels[0].setText("Keep Choice : "+game.getKeep_total()+" times");
+				labels[1].setText("Win : "+game.getKeep_win()+" Gold ( "+game.getKeep_win_p()+"% )");
+				labels[2].setText("Losses : "+game.getKeep_lose()+" sheep ( "+game.getKeep_lose_p()+"% )");
 			}else{
-				labels[3].setText("Change Choice : "+game.change_total+" times");
-				labels[4].setText("Win : "+game.change_win+" Gold ( "+game.change_win_p+"% )");
-				labels[5].setText("Losses : "+game.change_lose+" sheep ( "+game.change_lose_p+"% )");
+				labels[3].setText("Change Choice : "+game.getChange_total()+" times");
+				labels[4].setText("Win : "+game.getChange_win()+" Gold ( "+game.getChange_win_p()+"% )");
+				labels[5].setText("Losses : "+game.getChange_lose()+" sheep ( "+game.getChange_lose_p()+"% )");
 			}
 		}
 		
 		return check;
-	}
-	
-	public void show_autoMotions(JButton[] buttons){
-		for(int i = 0; i < 10; i++){
-			buttons[1].setIcon(select);
-			buttons[2].setIcon(gold);
-		}
 	}
 	
 }
