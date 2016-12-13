@@ -19,8 +19,9 @@ public class RankManager {
 	int i=0;
 	Timer timer;
 
+	//insert One Rank_Set to save.txt
 	public void insertRank(String name, int score, String time){
-		
+																// save to text file
 		try{ 
 	         FileWriter fw = new FileWriter("save.txt",true);
 	         BufferedWriter bf = new BufferedWriter(fw);
@@ -33,10 +34,11 @@ public class RankManager {
 	      }
 	}
 	
+	//make arrayList for output Rank_Set
 	public ArrayList<Rank_Set> outputRank_Set(){
 		
 		ArrayList<Rank_Set> rank_sets = new ArrayList<Rank_Set>();
-		
+														//read text file 
 		try {
 			File csvFile = new File("save.txt");
 			FileReader fr = new FileReader(csvFile);
@@ -47,11 +49,11 @@ public class RankManager {
 
 			while ((line = br.readLine()) != null) {
 
-				rank_set = new Rank_Set();
+				rank_set = new Rank_Set();				// create rank set object
 				String[] split = line.split(";");
 
 				rank_set.setId(split[0]);
-				rank_set.setScore(Integer.parseInt(split[1]));
+				rank_set.setScore(Integer.parseInt(split[1]));		// change to int
 				rank_set.setTime(split[2]);
 
 				rank_sets.add(rank_set);
@@ -60,7 +62,8 @@ public class RankManager {
 			e.printStackTrace();
 		}
 		
-        Collections.sort(rank_sets, new Score_Compare());
+		//call sort method with Sore_Compare class for sorting
+        Collections.sort(rank_sets, new Score_Compare());        
 		
 		return rank_sets;
 	}
@@ -68,7 +71,7 @@ public class RankManager {
 	static class Score_Compare implements Comparator<Rank_Set> {
 
         @Override
-        public int compare(Rank_Set arg0, Rank_Set arg1) {
+        public int compare(Rank_Set arg0, Rank_Set arg1) {			//object sorting with score
            return arg0.getScore() > arg1.getScore() ? -1
                  : arg0.getScore() < arg1.getScore() ? 1 : 0;
         }

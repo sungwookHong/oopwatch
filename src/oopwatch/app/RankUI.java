@@ -49,7 +49,9 @@ public class RankUI {
 	 */
 	private void initialize() {
 
+		//make rank manager
 		RankManager rankmanager = new RankManager();
+		//call outputRank_Set methhod for make Rank_set arraylist
 		ArrayList<Rank_Set> rank_list = rankmanager.outputRank_Set();
 
 		frame = new JFrame();
