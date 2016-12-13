@@ -1,4 +1,4 @@
-package oopwatch;
+package oopwatch.montyhall;
 
 import java.awt.EventQueue;
 

@@ -1,10 +1,12 @@
-package oopwatch;
+package oopwatch.montyhall;
 
 import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
+import oopwatch.app.*;
 
 public class MontyHallGameUIController extends UIController{
 

@@ -1,4 +1,4 @@
-package oopwatch;
+package oopwatch.app;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

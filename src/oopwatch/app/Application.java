@@ -1,4 +1,4 @@
-package oopwatch;
+package oopwatch.app;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -12,6 +12,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+
+import oopwatch.montyhall.*;
+import oopwatch.concept.*;
+import oopwatch.memory.*;
 
 public class Application {
 

@@ -1,8 +1,10 @@
-package oopwatch;
+package oopwatch.montyhall;
 
 import java.util.Random;
 
 import javax.swing.JLabel;
+
+import oopwatch.app.*;
 
 public class MontyHallGame implements Game {
 	

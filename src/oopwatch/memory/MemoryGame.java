@@ -1,8 +1,10 @@
-package oopwatch;
+package oopwatch.memory;
 
 import java.util.Random;
 
 import javax.swing.JLabel;
+
+import oopwatch.app.*;
 
 public class MemoryGame implements Game {
 	final int n = 16;
